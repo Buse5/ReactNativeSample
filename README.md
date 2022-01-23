@@ -11,3 +11,6 @@ If you're having problems, you can tweet to us [@expo](https://twitter.com/expo)
 Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
 
 ## PROJECT DEMO
+![image](https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif)
+
+![image](https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(1).gif)
