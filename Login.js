@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Alert, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { TextInput, Button, Avatar, HelperText } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Axios from 'axios';
 
 export default function Login({ navigation }) {
   //useState using
@@ -16,15 +17,29 @@ export default function Login({ navigation }) {
     } else if (password == '') {
       Alert.alert('Password can not empty!');
     } else {
-      console.log('fncLogin call', email, password);
+      //console.log('fncLogin call', email, password);
+      const url = 'https://www.jsonbulut.com/json/userLogin.php';
+      const params = {
+        ref: 'c7c2de28d81d3da4a386fc8444d574f2',
+        userEmail: email,
+        userPass: password,
+        face: 'no',
+      };
+      Axios.get(url, { params: params }).then((res) => {
+        const u = res.data.user[0];
+        const durum = u.durum;
+        const message = u.mesaj;
+        if (durum == true) {
+          //sayfa geçişi yap
+          navigation.navigate("product")
+        } else {
+          Alert.alert(message);
+        }
+      });
     }
   };
 
   const onChangeText = (text) => setEmail(text);
-
-  const hasErrors = () => {
-    return !email.includes('@gmail.com');
-  };
 
   return (
     <View style={styles.container}>
@@ -47,9 +62,6 @@ export default function Login({ navigation }) {
             style={styles.txtField}
             autoCapitalize="none" //küçük harf ile başlasması için
           />
-          <HelperText type="error" visible={hasErrors()}>
-            Email address is invalid!
-          </HelperText>
         </View>
         <TextInput
           label="Password"

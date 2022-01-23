@@ -1,128 +1,153 @@
 import React, { useState } from 'react';
+import validator from 'validator';
 import { Text, View, StyleSheet, Alert, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
-import { TextInput, Button, Avatar, HelperText } from 'react-native-paper';
+import { TextInput, Button, Avatar } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import PhoneInput from 'react-native-phone-number-input';
+import Axios from 'axios';
 
 export default function Register({ navigation }) {
+  // useState Using
   const [userName, setuserName] = useState('');
   const [userSurname, setuserSurname] = useState('');
   const [userPhone, setuserPhone] = useState('');
-  const [userMail, setuserMail] = useState('');
-  const [userPass, setuserPass] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  const onChangeText = (text) => setuserMail(text);
+  const [passStatus, setPassStatue] = useState(true);
 
-  const hasErrors = () => {
-    return !userMail.includes('@gmail.com');
-  };
-
-  //create function
+  // create Function
   const fncRegister = () => {
-    if (userName === '') {
-      Alert.alert('Name can not empty!');
-    } else if (userSurname === '') {
-      Alert.alert('Surname can not empty!');
-    } else if (userPhone === '') {
-      Alert.alert('Phone can not empty!');
-    } else if (userMail === '') {
-      Alert.alert('Mail can not empty!');
-    } else if (userPass === '') {
-      Alert.alert('Password can not empty!');
+    //setPassStatue(false)
+    if (userName == '') {
+      Alert.alert('userName Empty!');
+    } else if (userSurname == '') {
+      Alert.alert('userSurname Empty!');
+    } else if (userPhone == '') {
+      Alert.alert('userPhone Empty!');
+    } else if (password == '') {
+      Alert.alert('Password Empty!');
+    } else if (validator.isEmail(email) == false) {
+      Alert.alert('email not correct!');
     } else {
-      console.log('fncLogin call', userName, userSurname);
+      // &userName=demo&userSurname=demo&userPhone=05333333333&userMail=a@a.com&userPass=123456
+      /*
+      console.log(
+        'fncRegister Call',
+        userName,
+        userSurname,
+        userPhone,
+        password,
+        email
+      );
+      */
+
+      const url = 'https://www.jsonbulut.com/json/userRegister.php';
+      const params = {
+        ref: 'c7c2de28d81d3da4a386fc8444d574f2',
+        userName: userName,
+        userSurname: userSurname,
+        userPhone: userPhone,
+        userMail: email,
+        userPass: password,
+      };
+      Axios.get(url, { params: params }).then((res) => {
+        const u = res.data.user[0];
+        const durum = u.durum;
+        const message = u.mesaj;
+        console.log(durum, '', message);
+        if (durum == true) {
+          Alert.alert(message+"Kayıt başarılı, giriş yapınız :)")
+          navigation.navigate("login")
+        } else {
+          Alert.alert(message);
+        }
+      });
     }
   };
+
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={{ alignSelf: 'center', marginTop: 10 }}>
           <Avatar.Image
             style={{ backgroundColor: 'transparent' }}
-            size={150}
+            size={50}
             source={require('./assets/hero1.png')}
           />
         </View>
-        <Text style={styles.txtTitle}>Register</Text>
+
+        <Text style={styles.txtTitle}>User Register</Text>
+
         <TextInput
-          label="Name"
+          label="userName"
           value={userName}
           onChangeText={(text) => setuserName(text)}
           mode="outlined"
           keyboardType="email-address"
-          style={styles.txtField}
+          style={styles.txtFiled}
+          autoCapitalize="none"
         />
+
         <TextInput
-          label="Surname"
+          label="userSurname"
           value={userSurname}
           onChangeText={(text) => setuserSurname(text)}
           mode="outlined"
           keyboardType="email-address"
-          style={styles.txtField}
+          style={styles.txtFiled}
+          autoCapitalize="none"
         />
-        <View>
-          <TextInput
-            label="Email"
-            value={userMail}
-            onChangeText={(text) => setuserMail(text)}
-            mode="outlined"
-            keyboardType="email-address"
-            style={styles.txtField}
-            autoCapitalize="none" //küçük harf ile başlasması için
-          />
-          <HelperText type="error" visible={hasErrors()}>
-            Email address is invalid!
-          </HelperText>
-        </View>
+
         <TextInput
-          label="Password"
-          value={userPass}
-          onChangeText={(text) => setuserPass(text)}
-          mode="outlined"
-          secureTextEntry={true}
-          style={styles.txtField}
-        />
-        <TextInput
-          label="Phone"
+          label="userPhone"
           value={userPhone}
           onChangeText={(text) => setuserPhone(text)}
           mode="outlined"
           keyboardType="phone-pad"
-          style={styles.txtField}
+          style={styles.txtFiled}
+          autoCapitalize="none"
         />
-        <View style={styles.phone}>
-          <PhoneInput
-            label="phone"
-            value={userPhone}
-            onChangeText={(text) => setuserPhone(text)}
-          />
-        </View>
-        <View style={styles.cardView}>
-          <Button
-            style={styles.btnStyle}
-            mode="contained"
-            icon="account-arrow-right"
-            onPress={() => fncRegister()}>
-            Register
-          </Button>
-          <Button
-            style={styles.btnStyle}
-            mode="contained"
-            icon="login"
-            onPress={() => navigation.navigate('login')}>
-            Login
-          </Button>
-        </View>
+
+        <TextInput
+          label="E-Mail"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          mode="outlined"
+          keyboardType="email-address"
+          style={styles.txtFiled}
+          autoCapitalize="none"
+        />
+
+        <TextInput
+          label="Password"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          mode="outlined"
+          secureTextEntry={passStatus}
+          style={styles.txtFiled}
+        />
+
+        <Button
+          style={styles.btnStyle}
+          onPress={() => fncRegister()}
+          icon="login"
+          mode="contained">
+          Register
+        </Button>
       </ScrollView>
-      <View style={styles.footerCart}>
+
+      <View style={styles.footerCard}>
         <AwesomeIcon
           name="google"
           size={30}
-          style={{ textAlign: 'center' }}
           color="#bababa"
+          style={{ textAlign: 'center' }}
         />
-        <Text style={styles.footerCartText}>My First ReactNative</Text>
+        <Text style={styles.footerCartText}>
+          {' '}
+          Neque porro quisquam est qui dolorem{' '}
+        </Text>
       </View>
     </View>
   );
@@ -133,34 +158,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Constants.statusBarHeight,
     padding: 8,
-    backgroundColor: 'white',
   },
   txtTitle: {
     fontSize: 30,
     textAlign: 'center',
     marginTop: 20,
     color: '#598ee3',
+    marginBottom: 0,
   },
   btnStyle: {
     marginTop: 20,
     padding: 10,
   },
-  txtField: {
+  txtFiled: {
     marginTop: 10,
   },
-  cardView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  footerCart: {
+  footerCard: {
     margin: 10,
   },
   footerCartText: {
     textAlign: 'center',
-  },
-  phone: {
-    width: 250,
-    marginTop: 10,
-    marginLeft: 20,
   },
 });
