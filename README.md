@@ -1,7 +1,10 @@
 # PROJECT DEMO
-![image](https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif)
-![image](https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(1).gif)
 
+<a href="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif" target="_blank">
+<img src="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif" width="240" style="max-width:100%;"></a>
+
+<a href="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(1).gif" target="_blank">
+<img src="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(1).gif" width="240" style="max-width:100%;"></a>
 
 ## Sample Snack app
 
