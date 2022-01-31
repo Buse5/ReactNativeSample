@@ -1,5 +1,7 @@
 # PROJECT DEMO
 
+Available at https://snack.expo.dev/@bsseylcin/first-react-project
+
 <a href="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif" target="_blank">
 <img src="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif" width="240" height="500" style="max-width:100%;"></a>
 
