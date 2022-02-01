@@ -2,11 +2,11 @@
 
 Available at https://snack.expo.dev/@bsseylcin/first-react-project
 
-<a href="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif" target="_blank">
-<img src="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(2).gif" width="240" height="500" style="max-width:100%;"></a>
+<a href="https://github.com/Buse5/ReactNativeSample/blob/main/demo/WhatsApp%20Video%202022-01-23%20at%2017.00.34.gif" target="_blank">
+<img src="https://github.com/Buse5/ReactNativeSample/blob/main/demo/WhatsApp%20Video%202022-01-23%20at%2017.00.34.gif" width="240" height="500" style="max-width:100%;"></a>
 
-<a href="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(1).gif" target="_blank">
-<img src="https://github.com/Buse5/ReactNativeSample/blob/main/demoVideos/ProjectDemo2%20(1).gif" width="240" height="500" style="max-width:100%;"></a>
+<a href="https://github.com/Buse5/ReactNativeSample/blob/main/demo/WhatsApp%20Video%202022-01-23%20at%2017.01.18.gif" target="_blank">
+<img src="https://github.com/Buse5/ReactNativeSample/blob/main/demo/WhatsApp%20Video%202022-01-23%20at%2017.01.18.gif" width="240" height="500" style="max-width:100%;"></a>
 
 ## Sample Snack app
 
